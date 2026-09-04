@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 import { api } from './api/client';
 
-const SOCKET_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+const SOCKET_URL = import.meta.env.VITE_API_URL_PROD || 'https://reflex-delivery-murex.vercel.app/';
 
 let socket = null;
 
