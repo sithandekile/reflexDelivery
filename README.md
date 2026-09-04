@@ -73,17 +73,5 @@ npm run dev
 | POST | /assignments | dispatcher | Assign rider to order |
 | POST | /status/:deliveryId | rider, dispatcher | Advance status (riders: forward-only, must be assigned) |
 
-## Notes on design choices
+deployed link: https://reflex-delivery-murex.vercel.app/
 
-- **Socket.IO replaces long polling entirely** — the earlier long-poll endpoint held
-  requests open for up to 25s and re-checked the DB every 2s server-side; Socket.IO
-  pushes events the instant they happen and keeps one persistent connection per client
-  instead of repeated HTTP requests.
-- **JWT is stateless** — no session table; the token itself (id, role, name) is trusted
-  for 12h. Anything sensitive to permission changes mid-session (e.g. a role change)
-  won't take effect until the token is reissued.
-- **bcrypt at 12 salt rounds** — a reasonable default; increase if you have spare
-  server CPU headroom and want to make offline cracking slower.
-- **Deployment note:** Socket.IO needs a long-lived process (same as the old long-polling
-  requirement) — don't deploy the backend to a serverless platform with short request
-  timeouts.
