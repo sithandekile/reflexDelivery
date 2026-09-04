@@ -25,7 +25,7 @@ app.use('/status', statusRouter);
 /* Socket.IO needs to attach to the raw HTTP server, not just the Express app,
  so create the server explicitly instead of using app.listen().*/
 const httpServer = http.createServer(app);
-initSocket(httpServer, process.env.CORS_ORIGIN);
+initSocket(httpServer, process.env.CORS_ORIGIN || 'https://reflex-delivery-murex.vercel.app/');
 
 const PORT = process.env.PORT || 8800;
 httpServer.listen(PORT, '0.0.0.0', () => console.log(`Reflex Delivery API + sockets running on http://localhost:${PORT}`));
