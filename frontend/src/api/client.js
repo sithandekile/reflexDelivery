@@ -1,5 +1,4 @@
-const BASE_URL = import.meta.env.VITE_API_URL || 'https://reflexdelivery.onrender.com
-';
+const BASE_URL = import.meta.env.VITE_API_URL_PROD || 'https://reflexdelivery.onrender.com';
 
 function getToken() {
   return localStorage.getItem('reflex_token');
